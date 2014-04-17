@@ -10,7 +10,7 @@ des dossiers, ainsi que les principales dépendances JavaScript et LESS/CSS.
 Pour installer le générateur yeoman de lagrange
 -----------------------------------------------
 * Cloner le projet de generateur et y aller dans la console 
-	git clone https://github.com/LaGrangeMtl/lagrange-generator.git
+	git clone ce generateur
 	cd generator-lagrange
 * Y mettre une référence dans node_modules :
 	npm link
