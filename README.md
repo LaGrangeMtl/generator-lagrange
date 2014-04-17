@@ -8,7 +8,7 @@ Compose la structure de base des projets chez La Grange. Contient donc la struct
 des dossiers, ainsi que les principales dépendances JavaScript et LESS/CSS.
 
 Pour installer le générateur yeoman de lagrange
-=================================================
+-----------------------------------------------
 * Cloner le projet de generateur et y aller dans la console 
 	git clone https://github.com/LaGrangeMtl/lagrange-generator.git
 	cd generator-lagrange
