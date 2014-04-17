@@ -1,0 +1,24 @@
+{
+  "name": "<%= props.projectName %>",
+  "version": "<%= props.version %>",
+  "dependencies": {
+	"bootstrap": "~3.0.3",
+	<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } 
+	%><% if (props.jsLibs.isEasel){ %>"EaselJS": "latest",<% } 
+	%><% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } 
+	%><% if (props.jsLibs.isThree){ %>"three.js": "latest",<% } 
+	%><% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } 
+	%><% if (props.isFramework){ 
+	%>"lagrange":"https://github.com/LaGrangeMtl/grange-framework.git",
+	"history.js": "~1.8.0",
+	"imagesloaded": "~3.1.4",<%
+	} %>
+    "jquery": "<%= props.jqueryVersion %>",
+    "es5-shim" : "latest",
+	"underscore" : "latest",
+	"modernizr" : "latest",
+	"placeholder.js" : "https://github.com/jamesallardice/Placeholders.js.git"
+  },
+  "private": true
+}
+

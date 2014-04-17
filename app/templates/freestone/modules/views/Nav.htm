@@ -1,0 +1,85 @@
+
+
+{:breadcrumb_active}
+	<a href="{lnk}" class="bc_{cssId}">{label}</a>
+{/breadcrumb_active}
+{:breadcrumb_link}
+	<a href="{lnk}" class="bc_{cssId}">{label}</a>
+{/breadcrumb_link}
+
+
+{:menu}
+	<ul id="menu">{items}</ul>
+{/menu}
+
+{:1_closed}
+	<li id="menuLink_{table}_{pk}"><a href="{lnk}" id="lnk{cssId}" class="inner">{label}</a></li>
+{/1_closed}
+
+{:1_open}
+	<li id="menuLink_{table}_{pk}"><a href="{lnk}" id="lnk{cssId}" class="active inner">{label}</a></li>
+{/1_open}
+
+{:1_closed_parent}
+	<li id="menuLink_{table}_{pk}">
+		<a href="{lnk}" id="lnk{cssId}" class="inner">{label} </a>
+		<ul>{items}</ul>
+	</li>
+{/1_closed_parent}
+
+{:1_open_parent}
+	<li id="menuLink_{table}_{pk}">
+		<a href="{lnk}" id="lnk{cssId}" class="active inner">{label}</a>
+		<ul>{items}</ul>
+	</li>
+{/1_open_parent}
+
+{:2_closed}
+	<li id="menuLink_{table}_{pk}">
+		<a href="{lnk}" id="lnk{cssId}" class="inner">{label}</a>
+	</li>
+{/2_closed}
+
+{:2_open}
+	<li id="menuLink_{table}_{pk}">
+		<a href="{lnk}" id="lnk{cssId}" class="active inner">{label}</a>
+	</li>
+{/2_open}
+
+
+{:2_closed_parent}
+	<li  id="menuLink_{table}_{pk}">
+		<a href="{lnk}" id="lnk{cssId}" class="inner">{label}</a>
+		<ul>{items}</ul>
+	</li>
+{/2_closed_parent}
+
+{:2_open_parent}
+	<li  id="menuLink_{table}_{pk}">
+		<a href="{lnk}" id="lnk{cssId}" class="active inner" >{label}</a>
+		<ul>{items}</ul>
+	</li>
+{/2_open_parent}
+
+
+{:3_closed}
+	<li><a href="{lnk}" id="lnk{cssId}" class="inner">{label}</a></li>
+{/3_closed}
+
+{:3_open}
+	<li><a href="{lnk}" id="lnk{cssId}" class="active inner">{label}</a></li>
+{/3_open}
+
+{:3_closed_parent}
+	<li id="lnk{cssId}">
+		<a href="{lnk}" id="lnk{cssId}" class="inner">{label} </a>
+		<ul>{items}</ul>
+	</li>
+{/3_closed_parent}
+
+{:3_open_parent}
+	<li id="lnk{cssId}">
+		<a href="{lnk}" id="lnk{cssId}" class="active inner">{label}</a>
+		<ul>{items}</ul>
+	</li>
+{/3_open_parent}

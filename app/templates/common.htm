@@ -1,0 +1,74 @@
+
+{:htmlHead}
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="<%= props.authorName %>">
+
+		<link rel="icon" type="image/png" href="{dir}/img/favicon.png" />
+		<link rel="stylesheet" href="css/main.css">
+		<script src="js/vendor/modernizr.min.js"></script>
+
+		<script>
+			(function(ns){
+				//global config vars
+				ns.baseUrl = '{dir}/js';
+				ns.homeUrl = '{server}';
+				ns.lang = '£';
+				
+			})(window.<%= props.projectNamespace %> = window.<%= props.projectNamespace %> || {});
+		</script>
+
+		<% if (props.isFramework){ %>
+		<script data-main="<% if (props.isFreestone){ %>{dir}/<% } %>js/app.js" src="<% if (props.isFreestone){ %>{dir}/<% } %>js/require.js"></script>
+		<% }%>
+
+{/htmlHead}
+
+{:header}
+	<header>
+		{mod:Nav.menu}
+	</header>
+{/header}
+
+
+{:footer}
+	<footer></footer>
+
+	<div id="fb-root"></div>
+	<script>
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+		ga('create','{var:urchin}');ga('send','pageview');
+
+		/** FACEBOOK */
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '{var:facebook_appid}'
+			});
+
+		};
+
+		(function(d){
+			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement('script'); js.id = id; js.async = true;
+			js.src = "//connect.facebook.net/{lng.fr:fr_CA}{lng.en:en_US}/all.js";
+			ref.parentNode.insertBefore(js, ref);
+		}(document));
+		
+		
+		/** TWITTER */
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	</script>
+
+	<% if (!props.isFramework){ %>
+	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/main.js"></script>
+	<% }%>
+
+{/footer}
+

@@ -1,0 +1,20 @@
+{
+  "name": "<%= props.projectNamespace %>",
+  "title": "<%= props.projectName %>",
+  "version": "<%= props.version %>",
+  "homepage": "<%= props.homepage %>",
+  "author": {
+    "name": "<%= props.authorName %>",
+    "email": "<%= props.authorEmail %>"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-requirejs": "~0.4.3",
+    "grunt": "~0.4.4",
+    "rjs-build-analysis": "0.0.3",
+    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-concat": "latest",
+    "grunt-bowercopy":"latest"
+  },
+  "keywords": []
+}

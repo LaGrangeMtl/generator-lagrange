@@ -1,0 +1,102 @@
+	
+	@totalWidth : 968px;	
+	@gutter : 10px;
+
+	#responsive > .set(@totalWidth, @gutter);
+
+	.container{
+		position:relative;
+		.container-fixed();
+		padding: 0;
+	}
+	
+	.main {
+		.clearfix();	
+	}
+
+	.col {
+		float:left;
+		margin-left:@gutter;
+	}
+
+	.col, .row{
+		.clearfix();
+	}
+
+/* ---------------------------------------------- */
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* ---------------------------------------------- */
+/* ---------------------------------------------- */
+
+#responsive{
+
+	.set(@w, @gutter){
+		
+		@col12 : floor((@w - 11 * @gutter ) / 12) ;
+
+		.container{
+			width: @w;
+		}
+
+		.row{
+			margin-left: @gutter * -1;
+			width: @w + @gutter;
+		}
+		
+
+		.fullWidth{
+			.span(12);
+		}
+
+		.twoThirds{
+			.span(8);
+		}
+
+		.oneThird{
+			.span(4);
+		}
+
+		.oneSixth{
+			.span(2);
+		}
+
+		.half{
+			.span(6);
+		}
+				
+		.span(@n) {
+			#responsiveMixins > .span(@n, @col12, @gutter);
+		}
+
+
+	}
+
+	
+}
+
+#responsiveMixins{
+	//bloc qui prend un certain nombre de colonnes de large, avec une marge à gauche
+	.span(@n, @colW, @gutter) {
+		width: (@colW * @n) + (@gutter * (@n - 1));
+		margin-left: @gutter;
+		margin-bottom: @gutter;
+		#responsiveMixins > .col();
+		//background: rgba(200, 200, 255, 0.3);
+
+		.row{
+			width: ((@colW + @gutter) * @n);
+		}
+	}
+
+	.col{
+		float:left;
+	}
+}
