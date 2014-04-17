@@ -13,8 +13,8 @@
 		<script>
 			(function(ns){
 				//global config vars
-				ns.baseUrl = '{dir}/js';
-				ns.homeUrl = '{server}';
+				ns.baseUrl = '<% if (props.isFreestone){ %>{dir}<% } %>/js';
+				ns.homeUrl = <% if (props.isFreestone){ %>'{server}'<% } else { %> '<%= props.homeurl %>'<% } %> ;
 				ns.lang = '£';
 				
 			})(window.<%= props.projectNamespace %> = window.<%= props.projectNamespace %> || {});
@@ -28,7 +28,7 @@
 
 {:header}
 	<header>
-		{mod:Nav.menu}
+		<% if (props.isFreestone){ %>{mod:Nav.menu}<% } %>
 	</header>
 {/header}
 
