@@ -113,7 +113,7 @@ module.exports = function(grunt) {
 					paths: [],
 					compress : true,
 					sourceMap: true,
-					sourceMapFilename: 'css/master.css.map',
+					sourceMapFilename: 'css/main.css.map',
 					sourceMapRootpath: '../'
 				},
 				files: {
