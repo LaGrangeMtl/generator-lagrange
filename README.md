@@ -18,6 +18,8 @@ Pour installer le générateur yeoman de lagrange
 	npm install -g generator-lagrange
 * Après on peut scaffolder en faisant
 	yo lagrange
+* Une fois scaffoldé, on doit rouler la procédure Grunt qui fait le prebuild, c'est à dire déplace les dépendances dans les bons dossiers, pour ne pas avoir à gitter les bower_components
+	grunt prebuild
 
 
 Notes importantes
