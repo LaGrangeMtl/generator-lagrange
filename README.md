@@ -11,8 +11,7 @@ Pour installer le générateur yeoman de lagrange
 -----------------------------------------------
 Cloner le projet de generateur et y aller dans la console 
 
-	git clone ce generateur
-
+	git clone https://github.com/LaGrangeMtl/generator-lagrange.git
 	cd generator-lagrange
 
 Y mettre une référence dans node_modules :
