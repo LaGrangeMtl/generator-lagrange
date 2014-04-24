@@ -10,15 +10,25 @@ des dossiers, ainsi que les principales dépendances JavaScript et LESS/CSS.
 Pour installer le générateur yeoman de lagrange
 -----------------------------------------------
 * Cloner le projet de generateur et y aller dans la console 
+
 	git clone ce generateur
+
 	cd generator-lagrange
+
 * Y mettre une référence dans node_modules :
+
 	npm link
+
 * Installer le générateur
+
 	npm install -g generator-lagrange
+
 * Après on peut scaffolder en faisant
+
 	yo lagrange
+
 * Une fois scaffoldé, on doit rouler la procédure Grunt qui fait le prebuild, c'est à dire déplace les dépendances dans les bons dossiers, pour ne pas avoir à gitter les bower_components
+
 	grunt prebuild
 
 
