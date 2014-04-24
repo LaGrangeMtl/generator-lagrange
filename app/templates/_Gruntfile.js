@@ -111,7 +111,10 @@ module.exports = function(grunt) {
 			development: {
 				options: {
 					paths: [],
-					compress : true
+					compress : true,
+					sourceMap: true,
+					sourceMapFilename: 'css/master.css.map',
+					sourceMapRootpath: '../'
 				},
 				files: {
 					"css/main.css": "less/main.less"
