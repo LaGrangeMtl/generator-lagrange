@@ -12,7 +12,7 @@
     "grunt-contrib-requirejs": "~0.4.3",
     "grunt": "~0.4.4",
     "rjs-build-analysis": "0.0.3",
-    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-less": "latest",
     "grunt-contrib-concat": "latest",
     "grunt-bowercopy":"latest"
   },
