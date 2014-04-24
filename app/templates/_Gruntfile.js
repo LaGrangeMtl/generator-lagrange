@@ -12,14 +12,6 @@ module.exports = function(grunt) {
 			'* Copyright (c) <%%= grunt.template.today("yyyy") %> <%%= pkg.author.name %>;'+
 			'*/\n\n',
 		// Task configuration.
-
-		concat: {
-			options: {
-				banner: '<%%= banner %>',
-				stripBanners: true
-			},
-		},
-
 		bowercopy: {
 			options: {
 				srcPrefix: 'bower_components',
@@ -37,8 +29,6 @@ module.exports = function(grunt) {
 					'jquery.js' : 'jquery/dist/jquery.min.js',
 					'es5-shim.js' : 'es5-shim/es5-shim.min.js',
 					'es5-sham.js' : 'es5-shim/es5-sham.min.js',
-					'modernizr.js' : 'modernizr/modernizr.js',
-					'underscore.js' : 'underscore/underscore.js',
 					<% if (props.jsLibs.isGreensock){ %>'greensock' : 'gsap/src/minified',<% } %>
 				}
 			},
@@ -56,6 +46,32 @@ module.exports = function(grunt) {
 				}
 			}
 			<% } %>
+		},
+
+		concat: {
+			options: {
+				banner: '<%%= banner %>',
+				stripBanners: true
+			},
+			placeholder: {
+				src: [
+					"bower_components/placeholder.js/lib/utils.js",
+					"bower_components/placeholder.js/lib/main.js",
+					"bower_components/placeholder.js/lib/adapters/placeholders.jquery.js"
+				],
+				dest: "js/vendor/placeholders.jquery.js"
+			},
+		},
+
+		uglify: {
+			prebuild : {
+				files: {
+					'js/vendor/modernizr.js': ['bower_components/modernizr/modernizr.js'],
+					'js/vendor/underscore.js': ['bower_components/underscore/underscore.js'],
+					'js/vendor/placeholders.jquery.js': ['js/vendor/placeholders.jquery.js'],
+					<% if(props.isFramework) { %>'js/vendor/imagesloaded.js': ['js/vendor/imagesloaded.js'],<% } %>
+				}
+			},
 		},
 
 		requirejs: {
@@ -83,7 +99,7 @@ module.exports = function(grunt) {
 				}
 			}
 			<% if(props.isFramework) { %>,
-			prebuild: {
+			imagesloaded: {
 				options: {
 					optimize: "none",
 					skipDirOptimize: true,
@@ -128,10 +144,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-bowercopy');
 
 	// Default task.
 	grunt.registerTask('default', ['requirejs:build']);
-	grunt.registerTask('prebuild', [<% if(props.isFramework) { %>'requirejs:prebuild', <% } %>'bowercopy']);
+	grunt.registerTask('prebuild', [<% if(props.isFramework) { %>'requirejs:imagesloaded',<% } %> 'concat:placeholder', 'uglify:prebuild', 'bowercopy']);
 
 };

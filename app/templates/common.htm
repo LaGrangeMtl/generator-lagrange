@@ -8,7 +8,7 @@
 
 		<link rel="icon" type="image/png" href="<% if (props.isFreestone){ %>{dir}/<% } %>img/favicon.png" />
 		<link rel="stylesheet" href="css/main.css">
-		<script src="js/vendor/modernizr.min.js"></script>
+		<script src="js/vendor/modernizr.js"></script>
 
 		<script>
 			(function(ns){
@@ -67,6 +67,10 @@
 	</script>
 
 	<% if (!props.isFramework){ %>
+	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/es5-shim.js"></script>
+	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/es5-sham.js"></script>
+	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/jquery.js"></script>
+	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/placeholder.jquery.js"></script>
 	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/main.js"></script>
 	<% }%>
 
