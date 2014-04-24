@@ -49,7 +49,9 @@ module.exports = function(grunt) {
 				},
 				 files: {
 					'lagrange' : 'lagrange/src/js/lagrange',
-					'example' : 'lagrange/example/js/example',
+					'<%= props.projectNamespace %>' : 'lagrange/example/js/example',
+					'app.js' : 'lagrange/example/js/app.js',
+					'require.js' : 'lagrange/example/js/require.js',
 					'vendor/native.history.js' : 'history.js/scripts/bundled/html4+html5/native.history.js',
 				}
 			}
@@ -79,7 +81,8 @@ module.exports = function(grunt) {
 						done();
 					}
 				}
-			},
+			}
+			<% if(props.isFramework) { %>,
 			prebuild: {
 				options: {
 					optimize: "none",
@@ -92,6 +95,7 @@ module.exports = function(grunt) {
 					paths: {}
 				}
 			}
+			<% } %>
 		},
 		watch: {
 			js: {
@@ -110,7 +114,7 @@ module.exports = function(grunt) {
 					compress : true
 				},
 				files: {
-					"css/master.css": "less/master.less"
+					"css/main.css": "less/main.less"
 				}
 			},
 		}
@@ -125,6 +129,6 @@ module.exports = function(grunt) {
 
 	// Default task.
 	grunt.registerTask('default', ['requirejs:build']);
-	grunt.registerTask('prebuild', ['requirejs:prebuild', 'bowercopy']);
+	grunt.registerTask('prebuild', [<% if(props.isFramework) { %>'requirejs:prebuild', <% } %>'bowercopy']);
 
 };

@@ -6,15 +6,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="<%= props.authorName %>">
 
-		<link rel="icon" type="image/png" href="{dir}/img/favicon.png" />
+		<link rel="icon" type="image/png" href="<% if (props.isFreestone){ %>{dir}/<% } %>img/favicon.png" />
 		<link rel="stylesheet" href="css/main.css">
 		<script src="js/vendor/modernizr.min.js"></script>
 
 		<script>
 			(function(ns){
 				//global config vars
-				ns.baseUrl = '{dir}/js';
-				ns.homeUrl = '{server}';
+				ns.baseUrl = '<% if (props.isFreestone){ %>{dir}<% } %>/js';
+				ns.homeUrl = <% if (props.isFreestone){ %>'{server}'<% } else { %> '<%= props.homeurl %>'<% } %> ;
 				ns.lang = '£';
 				
 			})(window.<%= props.projectNamespace %> = window.<%= props.projectNamespace %> || {});
@@ -28,7 +28,7 @@
 
 {:header}
 	<header>
-		{mod:Nav.menu}
+		<% if (props.isFreestone){ %>{mod:Nav.menu}<% } %>
 	</header>
 {/header}
 
@@ -43,12 +43,12 @@
 		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
 		e.src='//www.google-analytics.com/analytics.js';
 		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-		ga('create','{var:urchin}');ga('send','pageview');
+		ga('create','<% if (props.isFreestone){ %>{var:urchin}<% } %>');ga('send','pageview');
 
 		/** FACEBOOK */
 		window.fbAsyncInit = function() {
 			FB.init({
-				appId : '{var:facebook_appid}'
+				appId : '<% if (props.isFreestone){ %>{var:facebook_appid}<% } %>'
 			});
 
 		};
@@ -57,7 +57,7 @@
 			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
 			if (d.getElementById(id)) {return;}
 			js = d.createElement('script'); js.id = id; js.async = true;
-			js.src = "//connect.facebook.net/{lng.fr:fr_CA}{lng.en:en_US}/all.js";
+			js.src = "//connect.facebook.net/<% if (props.isFreestone){ %>{lng.fr:fr_CA}{lng.en:en_US}<% } else { %>fr_CA<% } %>/all.js";
 			ref.parentNode.insertBefore(js, ref);
 		}(document));
 		
