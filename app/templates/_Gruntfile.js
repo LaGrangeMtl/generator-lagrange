@@ -81,7 +81,8 @@ module.exports = function(grunt) {
 						done();
 					}
 				}
-			},
+			}
+			<% if(props.isFramework) { %>,
 			prebuild: {
 				options: {
 					optimize: "none",
@@ -94,6 +95,7 @@ module.exports = function(grunt) {
 					paths: {}
 				}
 			}
+			<% } %>
 		},
 		watch: {
 			js: {
@@ -112,7 +114,7 @@ module.exports = function(grunt) {
 					compress : true
 				},
 				files: {
-					"css/master.css": "less/master.less"
+					"css/main.css": "less/main.less"
 				}
 			},
 		}
@@ -127,6 +129,6 @@ module.exports = function(grunt) {
 
 	// Default task.
 	grunt.registerTask('default', ['requirejs:build']);
-	grunt.registerTask('prebuild', ['requirejs:prebuild', 'bowercopy']);
+	grunt.registerTask('prebuild', [<% if(props.isFramework) { %>'requirejs:prebuild', <% } %>'bowercopy']);
 
 };
