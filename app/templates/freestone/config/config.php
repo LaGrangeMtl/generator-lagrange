@@ -40,7 +40,7 @@
 	
 	//configuratrion for shared views
 	VEnv::$commonViewConfig = array(
-		'alwaysShow'=>array('scriptsheader', 'header', 'footer'),
+		'alwaysShow'=>array('htmlHead', 'header', 'footer'),
 		'qstr' => array(
 			'page' => "SELECT
 				el.placeholder AS `item`, gr.placeholder AS `group`
