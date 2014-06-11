@@ -7,7 +7,7 @@
 		<meta name="author" content="<%= props.authorName %>">
 
 		<link rel="icon" type="image/png" href="<% if (props.isFreestone){ %>{dir}/<% } %>img/favicon.png" />
-		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="<% if (props.isFreestone){ %>{dir}/<% } %>css/main.css">
 		<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/modernizr.js"></script>
 
 		<script>
