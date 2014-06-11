@@ -39,8 +39,6 @@ module.exports = function(grunt) {
 				},
 				 files: {
 					'lagrange' : 'lagrange/src/js/lagrange',
-					'<%= props.projectNamespace %>' : 'lagrange/example/js/example',
-					'app.js' : 'lagrange/example/js/app.js',
 					'require.js' : 'lagrange/example/js/require.js',
 					'vendor/native.history.js' : 'history.js/scripts/bundled/html4+html5/native.history.js',
 				}
