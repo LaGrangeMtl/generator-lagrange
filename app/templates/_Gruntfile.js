@@ -12,6 +12,13 @@ module.exports = function(grunt) {
 			'* Copyright (c) <%%= grunt.template.today("yyyy") %> <%%= pkg.author.name %>;'+
 			'*/\n\n',
 		// Task configuration.
+		<% if (props.jsLibs.isEasel){ %>
+		//get Easel version for bowercopy
+		easelVersion : (function(){
+			var easelCnf = grunt.file.readJSON('bower_components/EaselJS/bower.json');
+			return easelCnf.version;
+		}()),
+		<% } %>
 		bowercopy: {
 			options: {
 				srcPrefix: 'bower_components',
@@ -26,10 +33,11 @@ module.exports = function(grunt) {
 					destPrefix: 'js/vendor',
 				},
 				 files: {
-					'jquery.js' : 'jquery/dist/jquery.min.js',
+					'jquery.js' : 'jquery/<% if (props.jqueryVersion === '<2'){ %>dist/<% } %>jquery.min.js',
 					'es5-shim.js' : 'es5-shim/es5-shim.min.js',
 					'es5-sham.js' : 'es5-shim/es5-sham.min.js',
 					<% if (props.jsLibs.isGreensock){ %>'greensock' : 'gsap/src/minified',<% } %>
+					<% if (props.jsLibs.isEasel){ %>'easel.js' : 'EaselJS/lib/easeljs-<%%= easelVersion %>.min.js',<% } %>
 				}
 			},
 			<% if (props.isFramework){ %>
