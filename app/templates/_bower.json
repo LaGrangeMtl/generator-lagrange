@@ -9,7 +9,7 @@
 	%><% if (props.jsLibs.isThree){ %>"three.js": "latest",<% } 
 	%><% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } 
 	%><% if (props.isFramework){ 
-	%>"lagrange":"https://github.com/LaGrangeMtl/grange-framework.git",
+	%>"lagrange":"https://github.com/LaGrangeMtl/grange-framework.git#latest",
 	"history.js": "~1.8.0",
 	"imagesloaded": "~3.1.4",<%
 	} %>
