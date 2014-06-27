@@ -10,7 +10,7 @@
 		 //database config
 		'dbUser' => 'root',
 		'dbPass' => '',
-		'dbName' => '<%= props.db_name %>',
+		'dbName' => '<%= props.dbName %>',
 		'cacheConfig' => array(
 			'life' => 10,
 			'noCacheVars' => false,
