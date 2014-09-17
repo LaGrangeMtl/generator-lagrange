@@ -2,7 +2,7 @@
   "name": "<%= props.projectName %>",
   "version": "<%= props.version %>",
   "dependencies": {
-	"bootstrap-sass": "~3.2.0",
+	"bootstrap-sass": "~3",
 	<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } 
 	%><% if (props.jsLibs.isEasel){ %>"EaselJS": "latest",<% } 
 	%><% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } 

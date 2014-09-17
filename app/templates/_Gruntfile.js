@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 			},
 			bootmoilastrap: {
 				 files: {
-					'scss/common/bootstrap' : 'bootstrap/scss',
+					'scss/common/bootstrap' : 'bootstrap-sass/lib',
 				}
 			},
 			vendor: {
