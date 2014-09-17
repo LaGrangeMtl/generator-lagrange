@@ -5,7 +5,7 @@ generator-lagrange
 Scaffolding pour les projets de [La Grange](http://la-grange.ca "La Grange").
 
 Compose la structure de base des projets chez La Grange. Contient donc la structure
-des dossiers, ainsi que les principales dépendances JavaScript et LESS/CSS.
+des dossiers, ainsi que les principales dépendances JavaScript et SCSS/CSS.
 
 Pour installer le générateur yeoman de lagrange
 -----------------------------------------------
@@ -44,16 +44,16 @@ Structure des dossiers
 Fichiers .css seulement
 
 ***
-##### /less
-Le fichier master.less sera situé à la racine de ce dossier. Les autres fichiers .less sont disposés selon cette structure :
+##### /scss
+Le fichier main.scss sera situé à la racine de ce dossier. Les autres fichiers .scss sont disposés selon cette structure :
 
 * _/common_ :
 
-	Ici, les fichiers communs à tous les projets, ex: "responsive.less", "reset.less", etc.
+	Ici, les fichiers communs à tous les projets, ex: "responsive.scss", "reset.scss", etc.
 
 * _/website_ :
 
-	Ici, les fichiers spécifiques à chaque projet, ex: "basic.less", "header.less", etc.
+	Ici, les fichiers spécifiques à chaque projet, ex: "basic.scss", "header.scss", etc.
 
 ***
 ##### /img

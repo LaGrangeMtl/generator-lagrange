@@ -195,7 +195,7 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
     this.mkdir('img');
     this.mkdir('js');
     this.mkdir('assets');
-    this.directory('less', 'less');
+    this.directory('scss', 'scss');
     this.template('_package.json', 'package.json');
     this.template('_Gruntfile.js', 'Gruntfile.js');
     this.template('_bower.json', 'bower.json');
