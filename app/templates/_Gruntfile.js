@@ -132,11 +132,8 @@ module.exports = function(grunt) {
 		sass: {
 			development: {
 				options: {
-					paths: [],
-					compress : true,
-					sourceMap: true,
-					sourceMapFilename: 'css/main.css.map',
-					sourceMapRootpath: '../'
+					style : 'compressed',
+					sourcemap: true,
 				},
 				files: {
 					"css/main.css": "scss/main.scss"
