@@ -2,7 +2,7 @@
   "name": "<%= props.projectName %>",
   "version": "<%= props.version %>",
   "dependencies": {
-	"bootstrap": "~3.0.3",
+	"bootstrap-sass": "~3.2.0",
 	<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } 
 	%><% if (props.jsLibs.isEasel){ %>"EaselJS": "latest",<% } 
 	%><% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } 
@@ -15,6 +15,7 @@
 	} %>
     "jquery": "<%= props.jqueryVersion %>",
     "es5-shim" : "latest",
+    "console-polyfill" : "latest",
 	"underscore" : "latest",
 	"modernizr" : "latest",
 	"placeholder.js" : "https://github.com/jamesallardice/Placeholders.js.git"

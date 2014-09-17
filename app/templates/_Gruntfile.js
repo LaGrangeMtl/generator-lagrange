@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 			},
 			bootmoilastrap: {
 				 files: {
-					'less/common/bootstrap' : 'bootstrap/less',
+					'scss/common/bootstrap' : 'bootstrap/scss',
 				}
 			},
 			vendor: {
@@ -124,12 +124,12 @@ module.exports = function(grunt) {
 				files: 'js/**/*.js',
 				tasks: ['requirejs:build']
 			},
-			less: {
-				files: 'less/*.less',
-				tasks: ['less']
+			scss: {
+				files: 'scss/**/*.scss',
+				tasks: ['sass']
 			}
 		},
-		less: {
+		sass: {
 			development: {
 				options: {
 					paths: [],
@@ -139,7 +139,7 @@ module.exports = function(grunt) {
 					sourceMapRootpath: '../'
 				},
 				files: {
-					"css/main.css": "less/main.less"
+					"css/main.css": "scss/main.scss"
 				}
 			},
 		}
@@ -148,7 +148,7 @@ module.exports = function(grunt) {
 	// These plugins provide necessary tasks.
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-bowercopy');
