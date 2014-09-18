@@ -25,6 +25,13 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
       if (!this.options['skip-install']) {
         this.installDependencies({
           callback: function () {
+            if(this.props.isBrowserify) {
+
+              this.spawnCommand('ln', ['-s', '../app', 'node_modules/app']);
+              this.spawnCommand('ln', ['-s', '../app/lagrange', 'node_modules/lagrange']);
+              this.spawnCommand('ln', ['-s', '../app/'+this.props.projectNamespace, 'node_modules/'+this.props.projectNamespace]);
+              console.log('Symbolic links for browserify created');
+            }
             this.spawnCommand('grunt', ['prebuild']);
           }.bind(this)
         });
@@ -102,6 +109,12 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
         message: 'Email',
         type: 'input',
         default : 'info@la-grange.ca',
+      },
+      {
+        name: 'isBrowserify',
+        type: 'confirm',
+        message: 'Scripts gérés par browserify?',
+        default : true
       },
       {
         name: 'jqueryVersion',
@@ -194,12 +207,18 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
   app: function () {
     this.mkdir('img');
     this.mkdir('js');
+    if(this.props.isBrowserify) {
+      this.mkdir('app');
+      this.mkdir('app/lagrange');
+      this.mkdir('app/'+this.props.projectNamespace);
+    }
     this.mkdir('assets');
     this.directory('scss', 'scss');
     this.template('_package.json', 'package.json');
     this.template('_Gruntfile.js', 'Gruntfile.js');
     this.template('_bower.json', 'bower.json');
     this.template('_.gitignore', '.gitignore');
+    this.template('_README.md', 'README.md');
 
     if(this.props.isFreestone) {
       this.mkdir('config');

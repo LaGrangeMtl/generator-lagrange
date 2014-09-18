@@ -20,8 +20,9 @@
 			})(window.<%= props.projectNamespace %> = window.<%= props.projectNamespace %> || {});
 		</script>
 
-		<% if (props.isFramework){ %>
-		<script data-main="<% if (props.isFreestone){ %>{dir}/<% } %>js/app.js" src="<% if (props.isFreestone){ %>{dir}/<% } %>js/require.js"></script>
+		<% if (props.isBrowserify){ %>
+			<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/common.js"></script>
+			<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/app.js"></script>
 		<% }%>
 
 {/htmlHead}
@@ -66,7 +67,7 @@
 		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
 
-	<% if (!props.isFramework){ %>
+	<% if (!props.isBrowserify){ %>
 	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/es5-shim.js"></script>
 	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/es5-sham.js"></script>
 	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/jquery.js"></script>

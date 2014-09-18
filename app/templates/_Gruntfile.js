@@ -28,32 +28,53 @@ module.exports = function(grunt) {
 					'scss/common/bootstrap' : 'bootstrap-sass/lib',
 				}
 			},
-			vendor: {
-				options: {
-					destPrefix: 'js/vendor',
+			<% if (!props.isBrowserify){ %>
+				vendor: {
+					options: {
+						destPrefix: 'js/vendor',
+					},
+					 files: {
+						'jquery.js' : 'jquery/<% if (props.jqueryVersion === '<2'){ %>dist/<% } %>jquery.min.js',
+						'es5-shim.js' : 'es5-shim/es5-shim.min.js',
+						'es5-sham.js' : 'es5-shim/es5-sham.min.js',
+						'imagesloaded.js' : 'imagesloaded/imagesloaded.js',
+						<% if (props.jsLibs.isGreensock){ %>'greensock' : 'gsap/src/minified',<% } %>
+						<% if (props.jsLibs.isEasel){ %>'easel.js' : 'EaselJS/lib/easeljs-<%%= easelVersion %>.min.js',<% } %>
+					}
 				},
-				 files: {
-					'jquery.js' : 'jquery/<% if (props.jqueryVersion === '<2'){ %>dist/<% } %>jquery.min.js',
-					'es5-shim.js' : 'es5-shim/es5-shim.min.js',
-					'es5-sham.js' : 'es5-shim/es5-sham.min.js',
-					<% if (props.jsLibs.isGreensock){ %>'greensock' : 'gsap/src/minified',<% } %>
-					<% if (props.jsLibs.isEasel){ %>'easel.js' : 'EaselJS/lib/easeljs-<%%= easelVersion %>.min.js',<% } %>
+				<% if (props.isFramework){ %>
+				lagrange: {
+					options: {
+						destPrefix: 'js',
+					},
+					 files: {
+						'lagrange' : 'lagrange/src/js/lagrange',
+						'vendor/native.history.js' : 'history.js/scripts/bundled/html4+html5/native.history.js',
+					}
 				}
-			},
-			<% if (props.isFramework){ %>
-			lagrange: {
-				options: {
-					destPrefix: 'js',
+				<% } %>
+			<% } else { %>
+				vendor: {
+					options: {
+						destPrefix: 'js/vendor',
+					},
+					 files: {
+						'modernizr.js' : 'modernizr/modernizr.js',
+					}
 				},
-				 files: {
-					'lagrange' : 'lagrange/src/js/lagrange',
-					'require.js' : 'lagrange/example/js/require.js',
-					'vendor/native.history.js' : 'history.js/scripts/bundled/html4+html5/native.history.js',
+				<% if (props.isFramework){ %>
+				lagrange: {
+					options: {
+						destPrefix: 'app',
+					},
+					 files: {
+						'lagrange' : 'lagrange/src/js/lagrange',
+					}
 				}
-			}
+				<% } %>
 			<% } %>
 		},
-
+		<% if (!props.isBrowserify){ %>
 		concat: {
 			options: {
 				banner: '<%%= banner %>',
@@ -68,67 +89,88 @@ module.exports = function(grunt) {
 				dest: "js/vendor/placeholders.jquery.js"
 			},
 		},
-
+		<% } %>
 		uglify: {
+			options: {
+				banner:  '<%%= banner %>'
+			},
+			<% if (!props.isBrowserify){ %>
 			prebuild : {
 				files: {
 					'js/vendor/modernizr.js': ['bower_components/modernizr/modernizr.js'],
-					'js/vendor/underscore.js': ['bower_components/underscore/underscore.js'],
+					'js/vendor/lodash.js': ['bower_components/lodash/lodash.js'],
 					'js/vendor/placeholders.jquery.js': ['js/vendor/placeholders.jquery.js'],
 					<% if(props.isFramework) { %>'js/vendor/imagesloaded.js': ['js/vendor/imagesloaded.js'],<% } %>
 				}
 			},
-		},
-
-		requirejs: {
-			build: {
-				options: {
-					
-					skipDirOptimize: true,
-					name: "app",
-					include: [],
-					insertRequire: [],
-					out: "built/app.js",
-					baseUrl: 'js/',
-					mainConfigFile: 'js/app.js',
-					done: function(done, output) {
-						var duplicates = require('rjs-build-analysis').duplicates(output);
-
-						if (duplicates.length > 0) {
-							grunt.log.subhead('Duplicates found in requirejs build:');
-							grunt.log.warn(duplicates);
-							done(new Error('r.js built duplicate modules, please check the excludes option.'));
-						}
-
-						done();
-					}
-				}
-			}
-			<% if(props.isFramework) { %>,
-			imagesloaded: {
-				options: {
-					optimize: "none",
-					skipDirOptimize: true,
-					name: "imagesloaded/imagesloaded",
-					include: [],
-					insertRequire: [],
-					out: "js/vendor/imagesloaded.js",
-					baseUrl: 'bower_components/',
-					paths: {}
-				}
+			<% } else { %>
+			prod: {
+				src: 'js/app.js',
+				dest: 'js/app.js'
+			},
+			common: {
+				src: 'js/common.js',
+				dest: 'js/common.js'
 			}
 			<% } %>
 		},
-		watch: {
-			js: {
-				files: 'js/**/*.js',
-				tasks: ['requirejs:build']
+		<% if (props.isBrowserify){ %>
+		browserify : {
+			options : {
+				external: ['gsap', 'jquery', 'lodash', 'imagesloaded', 'raphael'],
+				browserifyOptions : {
+					debug: false
+				},
+				//
 			},
+			dev : {
+				files: {
+				  'js/app.js': ['app/<%= props.projectNamespace %>/App.js'],
+				},
+				options : {
+					browserifyOptions : {
+						debug: true
+					},
+				}
+			},
+			prod : {
+				files: {
+				  'js/app.js': ['app/<%= props.projectNamespace %>/App.js'],
+				},
+			},
+			common: {
+				src: ['.'],
+				dest: 'js/common.js',
+				options: {
+					debug: false,
+					alias : [
+						'es5-shim:',
+						'jquery:',
+						<% if (props.jsLibs.isGreensock){ %>'gsap:',<% } %>
+						<% if (props.jsLibs.isRaphael){ %>'raphael:',<% } %>
+						<% if (props.jsLibs.isColorbox){ %>'jquery-colorbox:',<% } %>
+						'imagesloaded:',
+						'console-polyfill:',
+						'lodash:',
+					],
+					external : null,
+				},
+			}
+		},
+		<% } %>
+		watch: {
+			<% if (props.isBrowserify){ %>
+			js: {
+				files: 'app/**/*.js',
+				tasks: ['browserify:prod']
+			},
+			<% } %>
 			scss: {
 				files: 'scss/**/*.scss',
 				tasks: ['sass']
 			}
 		},
+
 		sass: {
 			development: {
 				options: {
@@ -143,15 +185,23 @@ module.exports = function(grunt) {
 	});
 
 	// These plugins provide necessary tasks.
-	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-sass');
-	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-bowercopy');
 
 	// Default task.
-	grunt.registerTask('default', ['requirejs:build']);
-	grunt.registerTask('prebuild', [<% if(props.isFramework) { %>'requirejs:imagesloaded',<% } %> 'concat:placeholder', 'uglify:prebuild', 'bowercopy']);
+	<% if (props.isBrowserify){ %>
 
+	grunt.loadNpmTasks('grunt-browserify');
+
+	grunt.registerTask('default', ['browserify:dev']);
+	grunt.registerTask('prod', ['browserify:prod', 'uglify:prod']);
+	grunt.registerTask('jslibs', ['browserify:common', 'uglify:common']);
+	grunt.registerTask('prebuild', ['bowercopy', 'browserify:common', 'uglify:common']);
+		
+	<% } else { %>
+	grunt.registerTask('prebuild', ['concat:placeholder', 'bowercopy', 'uglify:prebuild']);
+	<% } %>
 };

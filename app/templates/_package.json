@@ -1,21 +1,37 @@
 {
-  "name": "<%= props.projectNamespace %>",
-  "title": "<%= props.projectName %>",
-  "version": "<%= props.version %>",
-  "homepage": "<%= props.homepage %>",
-  "author": {
-    "name": "<%= props.authorName %>",
-    "email": "<%= props.authorEmail %>"
-  },
-  "devDependencies": {
-    "grunt-contrib-watch": "~0.4.4",
-    "grunt-contrib-requirejs": "~0.4.3",
-    "grunt": "~0.4.4",
-    "rjs-build-analysis": "0.0.3",
-    "grunt-contrib-sass": "latest",
-    "grunt-contrib-concat": "latest",
-    "grunt-contrib-uglify": "latest",
-    "grunt-bowercopy":"latest"
-  },
-  "keywords": []
+	"name": "<%= props.projectNamespace %>",
+	"title": "<%= props.projectName %>",
+	"version": "<%= props.version %>",
+	"homepage": "<%= props.homepage %>",
+	"author": {
+		"name": "<%= props.authorName %>",
+		"email": "<%= props.authorEmail %>"
+	},
+	"devDependencies": {
+		"grunt-contrib-watch": "~0.4.4",
+		"grunt": "~0.4.4",
+		"grunt-contrib-sass": "latest",
+		"grunt-contrib-uglify": "latest",
+		"grunt-contrib-concat": "latest",
+	   	<% if (props.isBrowserify){ %>
+	   		"browserify-shim" : "~3.4.1",
+   			"grunt-browserify": "latest",
+   		<% } %>
+		"grunt-bowercopy":"latest"
+	},
+	"dependencies" : {
+			<% if (props.isBrowserify){ %>
+				"jquery": "<%= props.jqueryVersion %>",
+				"es5-shim": "latest",
+				"lodash":"latest",
+				"console-polyfill" : "latest",
+				"lodash" : "latest",
+				<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } 
+				%><% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } 
+				%><% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } 
+				%>
+				"imagesloaded": "~3.1.4"
+			<% } %>
+	},
+	"keywords": []
 }

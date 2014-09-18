@@ -2,23 +2,27 @@
   "name": "<%= props.projectName %>",
   "version": "<%= props.version %>",
   "dependencies": {
-	"bootstrap-sass": "~3",
-	<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } 
-	%><% if (props.jsLibs.isEasel){ %>"EaselJS": "latest",<% } 
-	%><% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } 
-	%><% if (props.jsLibs.isThree){ %>"three.js": "latest",<% } 
-	%><% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } 
-	%><% if (props.isFramework){ 
+	
+	<% if (props.isFramework){ 
 	%>"lagrange":"https://github.com/LaGrangeMtl/grange-framework.git#latest",
 	"history.js": "~1.8.0",
-	"imagesloaded": "~3.1.4",<%
-	} %>
-    "jquery": "<%= props.jqueryVersion %>",
-    "es5-shim" : "latest",
-    "console-polyfill" : "latest",
-	"underscore" : "latest",
+	<% } %>
+	<% if (props.jsLibs.isThree){ %>"three.js": "latest",<% } %>
+	<% if (props.jsLibs.isEasel){ %>"EaselJS": "latest",<% } %>
+	<% if (!props.isBrowserify){ %>
+		<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } 
+		%><% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } 
+		%><% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } 
+		%>
+		"imagesloaded": "~3.1.4",
+	    "jquery": "<%= props.jqueryVersion %>",
+	    "es5-shim" : "latest",
+	    "console-polyfill" : "latest",
+		"lodash" : "latest",
+	<% } %>
 	"modernizr" : "latest",
-	"placeholder.js" : "https://github.com/jamesallardice/Placeholders.js.git"
+	"placeholder.js" : "https://github.com/jamesallardice/Placeholders.js.git",
+	"bootstrap-sass": "~3"
   },
   "private": true
 }
