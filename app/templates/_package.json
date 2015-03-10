@@ -10,14 +10,20 @@
 	"devDependencies": {
 		"grunt-contrib-watch": "~0.4.4",
 		"grunt": "~0.4.4",
-		"grunt-contrib-sass": "latest",
+		<% if (props.isLibSass) { %>
+			"grunt-libsass": "~0.2.0",
+		<% } else { %>
+			"grunt-contrib-sass": "latest",
+		<% } %>
 		"grunt-contrib-uglify": "latest",
 		"grunt-contrib-concat": "latest",
 	   	<% if (props.isBrowserify){ %>
 	   		"browserify-shim" : "~3.4.1",
    			"grunt-browserify": "latest",
    		<% } %>
-		"grunt-bowercopy":"latest"
+		"grunt-bowercopy":"latest",
+    	"time-grunt": "latest",
+    	"jit-grunt": "latest"
 	},
 	"dependencies" : {
 			<% if (props.isBrowserify){ %>

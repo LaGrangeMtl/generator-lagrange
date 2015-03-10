@@ -2,6 +2,9 @@
 
 module.exports = function(grunt) {
 
+	require('jit-grunt')(grunt);
+	require('time-grunt')(grunt);
+
 	// Project configuration.
 	grunt.initConfig({
 		// Metadata.
@@ -167,34 +170,39 @@ module.exports = function(grunt) {
 			<% } %>
 			scss: {
 				files: 'scss/**/*.scss',
+			<% if (props.isLibSass) { %>
+				tasks: ['libsass']
+			<% } else { %>
 				tasks: ['sass']
+			<% } %>
 			}
 		},
 
-		sass: {
-			development: {
-				options: {
-					style : 'compressed',
-					sourcemap: true,
-				},
-				files: {
-					"css/main.css": "scss/main.scss"
+		<% if (props.isLibSass) { %>
+			libsass: {
+			    compile: {
+					src: 'scss/main.scss',
+					dest: 'css/main.css',
+					sourceMap: true
 				}
-			},
-		}
+			}
+		<% } else { %>
+			sass: {
+				development: {
+					options: {
+						style : 'compressed',
+						sourcemap: true,
+					},
+					files: {
+						"css/main.css": "scss/main.scss"
+					}
+				},
+			}
+		<% } %>
 	});
-
-	// These plugins provide necessary tasks.
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-sass');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-bowercopy');
 
 	// Default task.
 	<% if (props.isBrowserify){ %>
-
-	grunt.loadNpmTasks('grunt-browserify');
 
 	grunt.registerTask('default', ['browserify:dev']);
 	grunt.registerTask('prod', ['browserify:prod', 'uglify:prod']);
