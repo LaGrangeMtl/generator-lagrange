@@ -180,10 +180,12 @@ module.exports = function(grunt) {
 
 		<% if (props.isLibSass) { %>
 			libsass: {
+				options: {
+					sourcemap: true
+				},
 			    compile: {
 					src: 'scss/main.scss',
-					dest: 'css/main.css',
-					sourceMap: true
+					dest: 'css/main.css'
 				}
 			}
 		<% } else { %>
