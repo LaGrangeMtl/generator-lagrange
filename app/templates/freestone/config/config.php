@@ -5,8 +5,7 @@
     VEnv::$client = '<%= props.projectNamespace %>';
     VEnv::$siteName = '<%= props.projectName %>';
 	
-	
-	VEnv::addEnv('local', array('.freestone'), array(
+	VEnv::addEnv('local', array('.freestone2'), array(
 		 //database config
 		'dbUser' => 'root',
 		'dbPass' => '',
@@ -17,6 +16,21 @@
 		),
 		'isDev' => true,
 	));
+	
+	VEnv::addEnv('bobette', array('.freestone'), array(
+		 //database config
+		'dbUser' => 'remote',
+		'dbPass' => 'remote',
+		'dbServer' => '192.168.1.199',
+		'dbName' => '<%= props.dbName %>',
+		'cacheConfig' => array(
+			'life' => 10,
+			'noCacheVars' => false,
+		),
+		'isDev' => true,
+	));
+	
+
 	
 	//array of css to display in html fields of the admin
     VEnv::$pathCss = array();
