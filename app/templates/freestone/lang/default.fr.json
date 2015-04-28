@@ -1,0 +1,8 @@
+{
+	"feedback": {
+		"invalid_email" : "Courriel invalide",
+		"no_msg" : "Pas de message à envoyer",
+		"invalid_input" : "Une entrée n'est pas valide",
+		"success" : "Le message a été envoyé avec succès"
+	}
+}
