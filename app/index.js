@@ -232,6 +232,7 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
       this.write('page.htm', this.indexFile);
       this.write('common.htm', this.commonFile);
       this.directory('freestone/modules', 'modules');
+      this.directory('freestone/lang', 'lang');
     } else {
       this.write('index.html', this.indexFile);
     }
