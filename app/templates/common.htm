@@ -5,6 +5,9 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="<%= props.authorName %>">
+		
+		<meta name="twitter:site" value="<% if (props.isFreestone){ %>{var:twitterAccount}<% } %>">
+		<meta name="twitter:creator" value="<% if (props.isFreestone){ %>{var:twitterAccount}<% } %>">
 
 		<link rel="icon" type="image/png" href="<% if (props.isFreestone){ %>{dir}/<% } %>img/favicon.png" />
 		<link rel="stylesheet" href="<% if (props.isFreestone){ %>{dir}/<% } %>css/main.css">

@@ -1,58 +1,45 @@
 <% if (props.isFreestone){ %>config:{
-    "modules":[
-        {"id":"Nav"}
-    ]
+	"modules":[
+		{"id":"Nav"}
+	]
 }
 <% } %><!doctype html>
 <html class="no-js">
-    <head>
-        {common:htmlHead}
+	<head>
+		{common:htmlHead}
 
-        <meta name="description" content="<% if (props.isFreestone){ %>{fld:page.metaDesc_£}<% } %>">
-        <link rel="canonical" href="<% if (props.isFreestone){ %>{lnk:page,{fld:page.id}}<% } else { %><%= props.homepage %>/index.html<% } %>">
+		<meta name="description" content="<% if (props.isFreestone){ %>{fld:page.metaDesc_£}<% } %>">
+	   <% if (!props.isFreestone){ %> <link rel="canonical" href="<%= props.homepage %>/index.html"><% } %>
 
-        <!-- Facebook, Twitter and G+ Meta tags -->
-        <meta property="og:title" content="<% if (props.isFreestone){ %>{fld:page.title_£}<% } %>" />
-        <meta property="og:url" content="<% if (props.isFreestone){ %>{lnk:page,{fld:page.id}}<% } %>" />
-        <meta property="og:site_name" content="<% if (props.isFreestone){ %>{var:site_name}<% } %>"/>
+		<!-- Facebook, Twitter and G+ Meta tags -->
+		<meta property="og:title" content="<% if (props.isFreestone){ %>{fld:page.title_£}<% } %>" />
+		<meta property="og:url" content="<% if (props.isFreestone){ %>{lnk:page,{fld:page.id}}<% } %>" />
+		<meta property="og:site_name" content="<% if (props.isFreestone){ %>{var:site_name}<% } %>"/>
 
-        <% if (props.isFreestone){ %>
-        [if pageImg: 
-            <meta property="og:image" content="{fld:page.img:pageImg}" />
-        ]
-        [if !pageImg: 
-            <!--{fld:page.facebookImg:pageImg}-->
-            <meta property="og:image" content="{var:facebookImg}" />
-        ]
+		<% if (props.isFreestone){ %>
+		[if pageImg:<meta property="og:image" content="{fld:page.img:pageImg}" />]
+		[if !pageImg:<meta property="og:image" content="{var:facebookImg}" />]
 
-        [if pageFacebookDesc: 
-            <meta property="og:description" content="{fld:page.metaDesc_£:pageFacebookDesc}" />
-        ]
-        [if !pageFacebookDesc: 
-            <!-- {fld:page.facebookDesc_£:pageFacebookDesc} -->
-            <meta property="og:description" content="{var:facebookDesc_£}" />
-        ]
-        <% } else { %>
-            <meta property="og:description" content="" />
-            <meta property="og:image" content="img/facebook.jpg" />
-        <% } %>
-        <meta property="og:type" content="article" />
-        <link rel="author" href="<% if (props.isFreestone){ %>{var:googlePlusAuthor}<% } %>"/>
-        <meta name="twitter:card" value="<% if (props.isFreestone){ %>{fld:page.metaDesc_£}<% } %>">
-        <meta name="twitter:site" value="<% if (props.isFreestone){ %>{var:twitterAccount}<% } %>">
-        <meta name="twitter:creator" value="<% if (props.isFreestone){ %>{var:twitterAccount}<% } %>">
-        
-        <script>
-            (function(ns){
-                
-            })(window.<%= props.projectNamespace %> = window.<%= props.projectNamespace %> || {});
-        </script>
+		[if pageFacebookDesc:<meta property="og:description" content="{fld:page.metaDesc_£:pageFacebookDesc}" />]
+		[if !pageFacebookDesc:<meta property="og:description" content="{var:facebookDesc_£}" />]
+		<% } else { %>
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="img/facebook.jpg" />
+		<% } %>
+		<meta property="og:type" content="article" />
+		<meta name="twitter:card" value="<% if (props.isFreestone){ %>{fld:page.metaDesc_£}<% } %>">
+		
+		<script>
+			(function(ns){
+				
+			})(window.<%= props.projectNamespace %> = window.<%= props.projectNamespace %> || {});
+		</script>
 
-        <title></title>
-    </head>
-    <body>
-        {common:header}
-        {common:footer}
-    </body>
+		<title></title>
+	</head>
+	<body>
+		{common:header}
+		{common:footer}
+	</body>
 </html>
 
