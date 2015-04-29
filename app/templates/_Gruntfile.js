@@ -120,7 +120,7 @@ module.exports = function(grunt) {
 		<% if (props.isBrowserify){ %>
 		browserify : {
 			options : {
-				external: ['gsap', 'jquery', 'lodash', 'imagesloaded', 'raphael'],
+				external: ['ns', 'gsap', 'jquery', 'lodash', 'imagesloaded', 'promise'],
 				browserifyOptions : {
 					debug: false
 				},
@@ -142,11 +142,12 @@ module.exports = function(grunt) {
 				},
 			},
 			common: {
-				src: ['.'],
+				src: 'src/app/vendorShim.js',
 				dest: 'js/common.js',
 				options: {
 					debug: false,
 					alias : [
+						'./app/<%= props.projectNamespace %>/NameSpace.js:ns',
 						'es5-shim:',
 						'jquery:',
 						<% if (props.jsLibs.isGreensock){ %>'gsap:',<% } %>
@@ -155,6 +156,7 @@ module.exports = function(grunt) {
 						'imagesloaded:',
 						'console-polyfill:',
 						'lodash:',
+						'bluebird:promise',
 					],
 					external : null,
 				},

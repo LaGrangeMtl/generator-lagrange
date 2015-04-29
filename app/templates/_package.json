@@ -32,6 +32,7 @@
 				"lodash":"latest",
 				"console-polyfill" : "latest",
 				"lodash" : "latest",
+  				"bluebird": "latest",
 				<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } 
 				%><% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } 
 				%><% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } 
