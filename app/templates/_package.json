@@ -41,7 +41,7 @@
 	},
 	<% if (props.isBrowserify){ %>
 	"browser": {
-		<% if (props.isFramework){  %>"neutrino": "./app/lagrange/neutrino.jquery",<% } %>
+		<% if (props.isFramework){  %>"neutrino": "./app/lagrange/neutrino.jquery.js",<% } %>
 		<% if (props.jsLibs.isValidate){ %>
 		"jquery.validationEngine": "./bower_components/validationengine/js/jquery.validationEngine.js",
 		"jquery.validationEngine-fr": "./bower_components/validationengine/js/languages/jquery.validationEngine-fr.js",
@@ -49,7 +49,7 @@
 		"validate": ".app/jQuery-validation-engine.browserify.js",
 		<% } %>
 		<% if (props.jsLibs.isGreensock){ %>"gsapScrollToPlugin": "gsap/src/uncompressed/plugins/ScrollToPlugin",<% } %>
-		"ns": "./app/<%= props.projectNamespace %>/NameSpace"
+		"ns": "./app/<%= props.projectNamespace %>/NameSpace.js"
 	},
 	<% } %>
 	"keywords": []
