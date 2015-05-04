@@ -9,17 +9,17 @@
 	<% } %>
 	<% if (props.jsLibs.isThree){ %>"three.js": "latest",<% } %>
 	<% if (props.jsLibs.isEasel){ %>"EaselJS": "latest",<% } %>
-	<% if (!props.isBrowserify){ %>
-		<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } 
-		%><% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } 
-		%><% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } 
-		%>
-		"imagesloaded": "~3.1.4",
-	    "jquery": "<%= props.jqueryVersion %>",
-	    "es5-shim" : "latest",
-	    "console-polyfill" : "latest",
-		"lodash" : "latest",
-	<% } %>
+<% if (!props.isBrowserify){ %>
+	<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } %>
+	<% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } %>
+	<% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } %>
+	"imagesloaded": "~3.1.4",
+    "jquery": "<%= props.jqueryVersion %>",
+    "es5-shim" : "latest",
+    "console-polyfill" : "latest",
+	"lodash" : "latest",
+<% } %>
+	<% if (props.jsLibs.isValidate){ %>"validationengine":"https://github.com/posabsolute/jQuery-Validation-Engine.git#~2.6.4",<% } %>
 	"modernizr" : "latest",
 	"placeholder.js" : "https://github.com/jamesallardice/Placeholders.js.git",
 	"bootstrap-sass": "~3"

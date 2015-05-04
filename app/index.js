@@ -78,6 +78,10 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 			name: 'Three.js',
 			value: 'isThree',
 			checked: false
+		},{
+			name: 'jQuery.validationEngine.js',
+			value: 'isValidate',
+			checked: false
 		}];
 
 		var prompts = [

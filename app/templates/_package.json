@@ -40,5 +40,18 @@
 				"imagesloaded": "~3.1.4"
 			<% } %>
 	},
+	<% if (props.isBrowserify){ %>
+	"browser": {
+		<% if (props.isFramework){ "neutrino": "./app/lagrange/neutrino.jquery",<% } %>
+		<% if (props.jsLibs.isValidate){ %>
+		"jquery.validationEngine": "./bower_components/validationengine/js/jquery.validationEngine.js",
+		"jquery.validationEngine-fr": "./bower_components/validationengine/js/languages/jquery.validationEngine-fr.js",
+		"jquery.validationEngine-en": "./bower_components/validationengine/js/languages/jquery.validationEngine-en.js",
+		"validate": ".app/jQuery-validation-engine.browserify.js",
+		<% } %>
+		<% if (props.jsLibs.isGreensock){"gsapScrollToPlugin": "gsap/src/uncompressed/plugins/ScrollToPlugin",<% } %>
+		"ns": "./app/<%= props.projectNamespace %>/NameSpace"
+	},
+	<% } %>
 	"keywords": []
 }
