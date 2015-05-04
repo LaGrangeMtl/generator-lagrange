@@ -120,7 +120,7 @@ module.exports = function(grunt) {
 		<% if (props.isBrowserify){ %>
 		browserify : {
 			options : {
-				external: ['ns', 'gsap', 'jquery', 'lodash', 'imagesloaded', 'promise'],
+				external: ['ns', 'gsap', 'jquery', 'lodash', 'imagesloaded', 'promise', 'validate'],
 				browserifyOptions : {
 					debug: false
 				},
@@ -147,12 +147,13 @@ module.exports = function(grunt) {
 				options: {
 					debug: false,
 					alias : [
-						'./app/<%= props.projectNamespace %>/NameSpace.js:ns',
+						'ns:',
 						'es5-shim:',
 						'jquery:',
 						<% if (props.jsLibs.isGreensock){ %>'gsap:',<% } %>
 						<% if (props.jsLibs.isRaphael){ %>'raphael:',<% } %>
 						<% if (props.jsLibs.isColorbox){ %>'jquery-colorbox:',<% } %>
+						<% if (props.jsLibs.isValidate){ %>'validate:',<% } %>
 						'imagesloaded:',
 						'console-polyfill:',
 						'lodash:',

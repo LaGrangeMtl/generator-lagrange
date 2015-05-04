@@ -66,23 +66,28 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 			name: 'Colorbox',
 			value: 'isColorbox',
 			checked: false
-		},{
+		},
+		{
 			name: 'Easel.js',
 			value: 'isEasel',
 			checked: false
-		},{
+		},
+		{
 			name: 'Raphael.js',
 			value: 'isRaphael',
 			checked: false
-		},{
+		},
+		{
 			name: 'Three.js',
 			value: 'isThree',
 			checked: false
-		},{
+		},
+		{
 			name: 'jQuery.validationEngine.js',
 			value: 'isValidate',
 			checked: false
-		}];
+		}
+		];
 
 		var prompts = [
 			{
