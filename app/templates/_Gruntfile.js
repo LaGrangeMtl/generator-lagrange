@@ -181,29 +181,17 @@ module.exports = function(grunt) {
 			}
 		},
 
-		<% if (props.isLibSass) { %>
-			libsass: {
+		sass: {
+			development: {
 				options: {
-					sourcemap: true
+					style : 'compressed',
+					sourcemap: true,
 				},
-			    compile: {
-					src: 'scss/main.scss',
-					dest: 'css/main.css'
+				files: {
+					"css/main.css": "scss/main.scss"
 				}
-			}
-		<% } else { %>
-			sass: {
-				development: {
-					options: {
-						style : 'compressed',
-						sourcemap: true,
-					},
-					files: {
-						"css/main.css": "scss/main.scss"
-					}
-				},
-			}
-		<% } %>
+			},
+		}
 	});
 
 	// Default task.
@@ -213,7 +201,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('prod', ['browserify:prod', 'uglify:prod']);
 	grunt.registerTask('jslibs', ['browserify:common', 'uglify:common']);
 	grunt.registerTask('prebuild', ['bowercopy', 'browserify:common', 'uglify:common']);
-		
+
 	<% } else { %>
 	grunt.registerTask('prebuild', ['concat:placeholder', 'bowercopy', 'uglify:prebuild']);
 	<% } %>

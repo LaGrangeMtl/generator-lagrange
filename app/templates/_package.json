@@ -10,11 +10,7 @@
 	"devDependencies": {
 		"grunt-contrib-watch": "~0.4.4",
 		"grunt": "~0.4.4",
-		<% if (props.isLibSass) { %>
-			"grunt-libsass": "~0.2.0",
-		<% } else { %>
-			"grunt-contrib-sass": "latest",
-		<% } %>
+		"grunt-sass": "latest",
 		"grunt-contrib-uglify": "latest",
 		"grunt-contrib-concat": "latest",
 	   	<% if (props.isBrowserify){ %>

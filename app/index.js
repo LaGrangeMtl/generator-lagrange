@@ -161,12 +161,6 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 				default : true
 			},
 			{
-				name: 'isLibSass',
-				type: 'confirm',
-				message: 'Utilise grunt-libsass (Y) ou grunt-contrib-sass (n)?',
-				default : true
-			},
-			{
 				type: 'checkbox',
 				name: 'optionnalJsLibs',
 				message: 'Quelles librairies javascript doivent être importées?',
@@ -207,7 +201,7 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 				var content;
 				var regContent = new RegExp('\\{:'+key+'\\}([\\s\\S]+)\\{/'+key+'\\}');
 				var content = regContent.exec(common);
-				indexFile = indexFile.replace('{common:'+key+'}', content[1]);     
+				indexFile = indexFile.replace('{common:'+key+'}', content[1]);
 
 			}
 			//console.log(commonEls);
