@@ -245,6 +245,7 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 	projectfiles: function () {
 		this.copy('editorconfig', '.editorconfig');
 		this.copy('jshintrc', '.jshintrc');
+		this.copy('rsync', '.rsync');
 	}
 });
 
