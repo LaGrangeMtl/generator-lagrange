@@ -1,0 +1,21 @@
+/c
+node_modules*
+bower_components*
+.sass-cache*
+.git*
+workdir*
+sql*
+scss*
+/vendor
+.editorconfig
+.gitignore
+.jshintrc
+bower.json
+composer.json
+Gruntfile.js
+package.json
+README.md
+.rsync
+
+
+;Project specific files
