@@ -1,55 +1,47 @@
 {
 	"name": "<%= props.projectNamespace %>",
 	"title": "<%= props.projectName %>",
-	"version": "<%= props.version %>",
+	"version": "0.0.1",
 	"homepage": "<%= props.homepage %>",
 	"author": {
-		"name": "<%= props.authorName %>",
-		"email": "<%= props.authorEmail %>"
+		"name": "La Grange Inc.",
+		"email": "info@la-grange.ca"
 	},
 	"devDependencies": {
-		"grunt-contrib-watch": "~0.4.4",
-		"grunt": "~0.4.4",
-		<% if (props.isLibSass) { %>
-			"grunt-libsass": "~0.2.0",
-		<% } else { %>
-			"grunt-contrib-sass": "latest",
-		<% } %>
-		"grunt-contrib-uglify": "latest",
-		"grunt-contrib-concat": "latest",
-	   	<% if (props.isBrowserify){ %>
-	   		"browserify-shim" : "~3.4.1",
-   			"grunt-browserify": "latest",
-   		<% } %>
-		"grunt-bowercopy":"latest",
-    	"time-grunt": "latest",
-    	"jit-grunt": "latest"
+		"gulp": "^3.9.0",
+		"gulp-rename": "^1.2.2",
+		"gulp-uglify": "^1.4.1",
+		"gulp-sass": "latest",
+		"colors":"latest",
+		"gulp-sourcemaps": "latest",
+		"vinyl-source-stream": "latest",
+		"vinyl-buffer": "latest",
+		<% if (props.isBrowserify){ %>"browserify": "latest",
+		"bower-resolve":"latest",
+		"resolve":"latest",
+		"watchify": "^1.0.2",
+		<% } %> 
+		<% if (props.isES6){ %>"babelify": "latest",<% } %>
+		"utils-merge": "latest",
+		"gulp-util": "latest"
 	},
 	"dependencies" : {
-			<% if (props.isBrowserify){ %>
-				"jquery": "<%= props.jqueryVersion %>",
-				"es5-shim": "latest",
-				"lodash":"latest",
-				"console-polyfill" : "latest",
-				"lodash" : "latest",
-  				"bluebird": "latest",
-				<% if (props.jsLibs.isColorbox){ %>"jquery-colorbox": "latest",<% } %>
-				<% if (props.jsLibs.isRaphael){ %>"raphael": "latest",<% } %>
-				<% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } %>
-				"imagesloaded": "~3.1.4"
-			<% } %>
+	<% if (props.isBrowserify){ %>
+		"jquery": "<%= props.jqueryVersion %>",
+		"es5-shim": "latest",
+		"console-polyfill" : "latest",
+		<% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } %>
+		"bluebird": "latest"
+	<% } %>
 	},
 	<% if (props.isBrowserify){ %>
 	"browser": {
-		<% if (props.isFramework){  %>"neutrino": "./app/lagrange/neutrino.jquery.js",<% } %>
-		<% if (props.jsLibs.isValidate){ %>
-		"jquery.validationEngine": "./bower_components/validationengine/js/jquery.validationEngine.js",
-		"jquery.validationEngine-fr": "./bower_components/validationengine/js/languages/jquery.validationEngine-fr.js",
-		"jquery.validationEngine-en": "./bower_components/validationengine/js/languages/jquery.validationEngine-en.js",
-		"validate": ".app/jQuery-validation-engine.browserify.js",
+		<% if (props.jsLibs.isGreensock){ %>
+		"gsapScrollToPlugin": "gsap/src/uncompressed/plugins/ScrollToPlugin",
+		"greensock": "./src/lagrange/gsap.browserify.js",
 		<% } %>
-		<% if (props.jsLibs.isGreensock){ %>"gsapScrollToPlugin": "gsap/src/uncompressed/plugins/ScrollToPlugin",<% } %>
-		"ns": "./app/<%= props.projectNamespace %>/NameSpace.js"
+		"ns": "./src/app/NameSpace.js",
+		"Promise":"bluebird"
 	},
 	<% } %>
 	"keywords": []

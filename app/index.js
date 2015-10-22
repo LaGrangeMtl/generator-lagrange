@@ -21,18 +21,19 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 	init: function () {
 		this.pkg = require('../package.json');
 
+
 		this.on('end', function () {
 			if (!this.options['skip-install']) {
 				this.installDependencies({
 					callback: function () {
 						if(this.props.isBrowserify) {
 
-							this.spawnCommand('ln', ['-s', '../app', 'node_modules/app']);
-							this.spawnCommand('ln', ['-s', '../app/lagrange', 'node_modules/lagrange']);
-							this.spawnCommand('ln', ['-s', '../app/'+this.props.projectNamespace, 'node_modules/'+this.props.projectNamespace]);
+							this.spawnCommand('ln', ['-s', '../src', 'node_modules/src']);
+							this.spawnCommand('ln', ['-s', '../src/lagrange', 'node_modules/lagrange']);
+							this.spawnCommand('ln', ['-s', '../src/app', 'node_modules/'+this.props.projectNamespace]);
 							console.log('Symbolic links for browserify created');
 						}
-						this.spawnCommand('grunt', ['prebuild']);
+						this.spawnCommand('gulp', ['libcopy']);
 					}.bind(this)
 				});
 			}
@@ -43,10 +44,13 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 		var done = this.async();
 
 		// have Yeoman greet the user
-		this.log(this.yeoman);
+		// this.log(this.yeoman);
+this.log(chalk.magenta(
+'                                          _o=<&&&&>=vo__\n                                        ?/$="\'"  """^=<&&R$~\\\n                                      .&?/\'              `""$$,\n                                    ,/?/\'       /-"^\\.   .-=~\\T,\n                                  ,/?/\'        /\\|6?`|  |<<q- ,??\n                                ./?/\'          `\\??dp\'  `$??,/|,i\\.\n                               ,*??              `"       ""\' `b\'\\\\$$&&\\.\n                              ,Td\'                             `&:`H\' "&7, .__\n                  ._.         H||            .                  `*\\H,  `&$$S:7|\n                 |????        M|,         ,--&|\\                  `&?b   ""://\'\n        .,o--vo\\,PJ\'H|,       H|L         ``\'"H?b                 ,-`?\\   ,&&\'\n       ,P?-""^==:=\' ||b       `L9,            `H`&,               |?:!|| ,P&\n       `b?\\          9/?       ??H,            |L *b.,\'"\\          :$:&  H]\'\n        `b$\\o.        */\\.      ??*b.           9.  `\\\\:(|     .,/$6d\'  |\\T\n          ``\\Z\\\\       `\\7b.    ,To?&b.          \\(\\:-.-S:-~=-"\'\',P     MJ\'\n             `\\?*b       ?&&\\.  d\\|<_ `\\o_       `&&M\\:?-+#:>\\.|,&\'    |LT\n               `\\?\\\\      ``\\?\\d|/`4RM|:~:$=v\\.    `$k<MR&MF$$?&J\'     HJ\'\n                 `\\?\\.       `\\b/$$$&v!-?&<?::P\\\\    `"^-^-?b=Sd\'     |\\T\n     _o~=~$&$>==v\\.??\\,         `\\d `\\$$\'9P\':-?>:"=\\ooo/=/$$~?$\\     ,R/\n   ./$?~^\'"""""`"\\\\&&< ?b               "`~$P:c: /v==v,#::?<<&:\'T|   d$/\'\n   :.             ""=o/&.                ,P    o&Z\'`\'.##| |MH\\|| ,$$\'\n   =:$H&=\\.           `"b?b.             .&\'    96*.-v.:?/`\\==$&?$&*\'\n       `^$?\\.           `*&*\\\\          ,P       ?~-~\'      |$$S>\'\n          `\\7b           ,T/\\&&\\.      d?                    |T\'\n            \\/b         .&J\'  `\\>     d\'                      T,\n             &`L        /||          ?|                        ?,\n             ||9       J\\T           H                          ?,\n              H||     ||/           ||                           9,\n              ||M     PJ\'           ||                           `H\n               bT,   ||T            ||                            ||\n               T/L   H||            `b                             M\n                &T,  M|              9,                            9\n                `L9, M|              `&.                           |\n                 `?*,9||              `b                           d\n                  `\\?(|H.              `b                          ?b\n                   `*\\ `&.              `\\.                       J*|b\n                     `\\o/\\.              `&.                     ,P 9/L\n                        9:&.              `9\\                   ??  `H9.\n                         *?9\\               `b                .&\'    |/|\n                          `|`\\.              `L             ./\'      `|H\n                          d\\/qZbo.            M          .,=\'        ,|T\n                 ./~&$$?=??/\' `"=H$|          H       .o=\'\'          J\\|\n                ,*/\'\'  `\\?        `\'        ./?ov=="*b9,            ,$P\n               ,Td                         ,$$\'`\'    ?|M           ,$/\n               J||                       ,$?/         M||         ?$/\n               M||         |>\\.     ._,~9$\'\'          T||        d\'M.\n               9`|         `Hi:R&:&&6&="\'           ./$J|       `^"\\Z\\.\n               ||M          `=Z\\:""                 H|T"            `&H&>v_\n                bT,    ..   v,?|\\                   M||               .:Z|&\\.\n                ||H  _oZ??v~>`d9H|                  `?*\\              ?$ `#\'H\n                 9/L||1+ "HH  .$/                    `bZ&\\       ,o\\&|}6| &/\'\n                  \\?$.:?ooo/*""\'                       `\\$$b_   |\\9|/|?:./\'\n                   `"""\'  `\'                              `~?&qo:?:\',p#/\'\n                                                             "^~<:>/"\n'
+));
 
 		// replace it with a short and sweet description of your generator
-		this.log(chalk.magenta('Yeah! On starte un projet. J\'espère que ça va être payant.'));
+		this.log(chalk.red('On a eu un nouveau projet sur c\'tes affaire-là d\'internet. Savez-vous ce qu\'on va faire avec c\'te 400 piasses-là?'));
 
 		//console.log(this);
 
@@ -57,36 +61,21 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 		};
 
 		var optionnalJsLibs = [
-		{
-			name: 'Greensock',
-			value: 'isGreensock',
-			checked: true
-		},
-		{
-			name: 'Colorbox',
-			value: 'isColorbox',
-			checked: false
-		},
-		{
-			name: 'Easel.js',
-			value: 'isEasel',
-			checked: false
-		},
-		{
-			name: 'Raphael.js',
-			value: 'isRaphael',
-			checked: false
-		},
-		{
-			name: 'Three.js',
-			value: 'isThree',
-			checked: false
-		},
-		{
-			name: 'jQuery.validationEngine.js',
-			value: 'isValidate',
-			checked: false
-		}
+			{
+				name: 'Greensock',
+				value: 'isGreensock',
+				checked: true
+			},
+			{
+				name: 'Selectric',
+				value: 'isSelectric',
+				checked: true
+			},
+			{
+				name: 'Slick',
+				value: 'isSlick',
+				checked: true
+			}
 		];
 
 		var prompts = [
@@ -97,32 +86,20 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 				default : this.appname,
 			},
 			{
-				name: 'version',
-				message: 'Version',
-				type: 'input',
-				default: '0.0.1',
-			},
-			{
 				name: 'homepage',
 				type: 'input',
 				message: 'Url',
 			},
 			{
-				name: 'authorName',
-				message: 'Auteur',
-				type: 'input',
-				default : 'La Grange',
-			},
-			{
-				name: 'authorEmail',
-				message: 'Email',
-				type: 'input',
-				default : 'info@la-grange.ca',
-			},
-			{
 				name: 'isBrowserify',
 				type: 'confirm',
 				message: 'Scripts gérés par browserify?',
+				default : true
+			},
+			{
+				name: 'isES6',
+				type: 'confirm',
+				message: 'Transpile ES6 avec Babelify?',
 				default : true
 			},
 			{
@@ -132,14 +109,14 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 				choices: [{
 					name: '1.x',
 					value: '<2',
-					checked: true
+					checked: false
 				},
 				{
 					name: '2.x',
 					value: 'latest',
-					checked: false
+					checked: true
 				}],
-				default : '<2'
+				default : 'latest'
 			},
 			{
 				name: 'isFreestone',
@@ -153,18 +130,6 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 				type: 'input',
 				message: 'Nom de la db mysql',
 				default : getDefaultFromPrevious('projectname'),
-			},
-			{
-				name: 'isFramework',
-				type: 'confirm',
-				message: 'Utilise le framework frontend de La Grange?',
-				default : true
-			},
-			{
-				name: 'isLibSass',
-				type: 'confirm',
-				message: 'Utilise grunt-libsass (Y) ou grunt-contrib-sass (n)?',
-				default : true
 			},
 			{
 				type: 'checkbox',
@@ -222,15 +187,15 @@ var LagrangeGenerator = yeoman.generators.Base.extend({
 	app: function () {
 		this.mkdir('img');
 		this.mkdir('js');
+		this.mkdir('css');
 		if(this.props.isBrowserify) {
-			this.directory('js/app', 'app');
-			this.mkdir('app/lagrange');
-			this.directory('js/client', 'app/'+this.props.projectNamespace);
+			this.directory('src', 'src');
+			this.mkdir('src/lagrange');
 		}
 		this.mkdir('assets');
 		this.directory('scss', 'scss');
 		this.template('_package.json', 'package.json');
-		this.template('_Gruntfile.js', 'Gruntfile.js');
+		this.template('_gulpfile.js', 'gulpfile.js');
 		this.template('_bower.json', 'bower.json');
 		this.template('_.gitignore', '.gitignore');
 		this.template('_README.md', 'README.md');

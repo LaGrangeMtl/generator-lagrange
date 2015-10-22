@@ -4,7 +4,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="<%= props.authorName %>">
 		
 		<meta name="twitter:site" value="<% if (props.isFreestone){ %>{var:twitterAccount}<% } %>">
 		<meta name="twitter:creator" value="<% if (props.isFreestone){ %>{var:twitterAccount}<% } %>">
@@ -23,10 +22,7 @@
 			})(window.<%= props.projectNamespace %> = window.<%= props.projectNamespace %> || {});
 		</script>
 
-		<% if (props.isBrowserify){ %>
-			<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/common.js"></script>
-			<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/app.js"></script>
-		<% }%>
+
 
 {/htmlHead}
 
@@ -42,12 +38,13 @@
 
 	<div id="fb-root"></div>
 	<script>
-		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-		e.src='//www.google-analytics.com/analytics.js';
-		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-		ga('create','<% if (props.isFreestone){ %>{var:urchin}<% } %>');ga('send','pageview');
+
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', '<% if (props.isFreestone){ %>{var:urchin}<% } %>', 'auto');
+		ga('send', 'pageview');
 
 		/** FACEBOOK */
 		window.fbAsyncInit = function() {
@@ -69,12 +66,14 @@
 		/** TWITTER */
 		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
-
+	<% if (props.isBrowserify){ %>
+	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/common.js"></script>
+	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/app.js"></script>
+	<% }%>
 	<% if (!props.isBrowserify){ %>
 	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/es5-shim.js"></script>
 	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/es5-sham.js"></script>
 	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/jquery.js"></script>
-	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/placeholder.jquery.js"></script>
 	<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/main.js"></script>
 	<% }%>
 

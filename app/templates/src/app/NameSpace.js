@@ -1,10 +1,11 @@
-
-	"use strict";
+'format es6';
+'use strict';
 
 	var name = '<%= props.projectNamespace %>';
 
-	var Promise = require('promise');
-	var $ = require('jquery');
+	import $ from 'jquery';
+	import Promise from 'Promise';
+
 
 	var ns = window[name] = (window[name] || {});
 
@@ -49,5 +50,5 @@
 		//console.log("ready");
 	});
 
-	module.exports = ns;
+	export default ns;
 
