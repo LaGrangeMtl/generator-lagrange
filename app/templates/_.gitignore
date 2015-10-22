@@ -35,3 +35,5 @@ _unused
 built
 node_modules
 bower_components
+c/*/src
+c/*/scss
