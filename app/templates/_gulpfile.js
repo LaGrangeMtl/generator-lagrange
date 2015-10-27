@@ -103,7 +103,9 @@ gulp.task('debug', function(){
 function compileScss(){
 	return gulp.src(CSSCONF.src + CSSCONF.mainFile)
 		.pipe(sass().on('error', sass.logError))
-		.pipe(gulp.dest(CSSCONF.dest));
+		.pipe(gulp.dest(CSSCONF.dest).on('end',function(){
+			gutil.log('Sass compiled.');
+		}));
 }
 
 function getBundler(cnf, isDev){
@@ -117,7 +119,7 @@ function getBundler(cnf, isDev){
 
 	if(cnf.require){
 		bundler = cnf.require.reduce(function(b, lib){
-			return b.require(lib.path, { 
+			return b.require(lib.path, {
 				expose: lib.alias || lib.id
 			});
 		}, bundler);
@@ -158,9 +160,9 @@ function bundleJs(cnf) {
 
 		stream = stream.pipe(uglify());
 	}
-	
+
 	// capture sourcemaps from transforms
-	
+
 	if(cnf.isDev){
 		stream = stream.pipe(sourcemaps.write('./'));
 	}
