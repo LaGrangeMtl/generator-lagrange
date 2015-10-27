@@ -157,7 +157,6 @@ function bundleJs(cnf) {
 	if(cnf.isDev){
 		stream = stream.pipe(sourcemaps.init({ loadMaps: true }));
 	} else {
-
 		stream = stream.pipe(uglify());
 	}
 
