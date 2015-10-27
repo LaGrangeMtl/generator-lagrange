@@ -31,7 +31,8 @@
 		"es5-shim": "latest",
 		"console-polyfill" : "latest",
 		<% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } %>
-		"bluebird": "latest"
+		"bluebird": "latest",
+		"source-map-support":"latest"
 	<% } %>
 	},
 	<% if (props.isBrowserify){ %>
