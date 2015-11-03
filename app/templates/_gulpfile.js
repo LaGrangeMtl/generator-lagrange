@@ -109,7 +109,7 @@ function compileScss(){
 }
 
 function getBundler(cnf, isDev){
-	var bundler = browserify(JSCONF.src + cnf.src, { debug: true }).transform(babelify, {/* options */ });
+	var bundler = browserify(JSCONF.src + cnf.src, { debug: true }).transform(babelify, { presets: ["es2015"]});
 
 	if(cnf.external) {
 		bundler = cnf.external.reduce(function(b, lib){
@@ -156,14 +156,9 @@ function bundleJs(cnf) {
 
 	if(cnf.isDev){
 		stream = stream.pipe(sourcemaps.init({ loadMaps: true }));
+		stream = stream.pipe(sourcemaps.write('./'));
 	} else {
 		stream = stream.pipe(uglify());
-	}
-
-	// capture sourcemaps from transforms
-
-	if(cnf.isDev){
-		stream = stream.pipe(sourcemaps.write('./'));
 	}
 
 	stream = stream.pipe(gulp.dest(JSCONF.dest));

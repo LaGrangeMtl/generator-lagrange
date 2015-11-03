@@ -6,7 +6,7 @@
 	import $ from 'jquery';
 	import Promise from 'Promise';
 
-	try{require('source-map-support').install();}catch(e){}
+	try{require('source-map-'+'support').install();}catch(e){}
 
 	var ns = window[name] = (window[name] || {});
 
