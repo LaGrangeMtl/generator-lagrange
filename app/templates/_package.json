@@ -13,6 +13,7 @@
 		"gulp-rename": "^1.2.2",
 		"gulp-uglify": "^1.4.1",
 		"gulp-sass": "latest",
+		"gulp-autoprefixer": "latest",
 		"colors":"latest",
 		"gulp-sourcemaps": "latest",
 		"vinyl-source-stream": "latest",
@@ -21,7 +22,7 @@
 		"bower-resolve":"latest",
 		"resolve":"latest",
 		"watchify": "^3.4.0",
-		<% } %> 
+		<% } %>
 		<% if (props.isES6){ %>"babelify": "^6.0.0",<% } %>
 		"utils-merge": "latest",
 		"gulp-util": "latest"
