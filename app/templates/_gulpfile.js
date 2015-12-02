@@ -20,6 +20,8 @@ var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
 var colors = require('colors');
 
+var autoprefixer = require('gulp-autoprefixer');
+
 
 var JSCONF = (function(){
 
@@ -102,6 +104,7 @@ gulp.task('debug', function(){
 function compileScss(){
 	return gulp.src(CSSCONF.src + CSSCONF.mainFile)
 		.pipe(sass().on('error', sass.logError))
+		.pipe(autoprefixer())
 		.pipe(gulp.dest(CSSCONF.dest).on('end',function(){
 			gutil.log('Sass compiled.');
 		}));
