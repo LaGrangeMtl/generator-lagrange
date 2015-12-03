@@ -26,9 +26,8 @@
 		<% if (props.isES6){ %>"babelify": "latest",<% } %>
 		"utils-merge": "latest",
 		"gulp-util": "latest",
-		"source-map-support":"latest"
-		"promise": "latest",
-		"amdefine": "latest"
+		"source-map-support":"latest",
+		"promise": "latest"
 	},
 	"dependencies" : {
 	<% if (props.isBrowserify){ %>
