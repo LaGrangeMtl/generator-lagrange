@@ -172,7 +172,7 @@ this.log(chalk.magenta(
 				var content;
 				var regContent = new RegExp('\\{:'+key+'\\}([\\s\\S]+)\\{/'+key+'\\}');
 				var content = regContent.exec(common);
-				indexFile = indexFile.replace('{common:'+key+'}', content[1]);     
+				indexFile = indexFile.replace('{common:'+key+'}', content[1]);
 
 			}
 			//console.log(commonEls);
@@ -203,6 +203,7 @@ this.log(chalk.magenta(
 		if(this.props.isFreestone) {
 			this.mkdir('config');
 			this.template('freestone/config/config.php', 'config/config.php');
+			this.template('freestone/deploy.sh', 'deploy.sh');
 			this.write('page.htm', this.indexFile);
 			this.write('common.htm', this.commonFile);
 			this.directory('freestone/modules', 'modules');
