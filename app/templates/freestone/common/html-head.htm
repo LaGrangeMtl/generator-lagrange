@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="twitter:site" value="<% if (props.isFreestone){ %>{var:twitterAccount}<% } %>">
+<meta name="twitter:creator" value="<% if (props.isFreestone){ %>{var:twitterAccount}<% } %>">
+
+<link rel="icon" type="image/png" href="<% if (props.isFreestone){ %>{dir}/<% } %>img/favicon.png" />
+<link rel="stylesheet" href="<% if (props.isFreestone){ %>{dir}/<% } %>css/main.css">
+<script src="<% if (props.isFreestone){ %>{dir}/<% } %>js/vendor/modernizr.js"></script>
+
+<script>
+	(function(ns){
+		//global config vars
+		ns.baseUrl = '{dir}/js';
+		ns.homeUrl = '{server}' ;
+		ns.lang = '£';
+		
+	})(window.<%= props.projectNamespace %> = window.<%= props.projectNamespace %>  || {});
+</script>

@@ -1,21 +1,17 @@
-<% if (props.isFreestone){ %>config:{
-	"modules":[
-		{"id":"Nav"}
-	]
-}
-<% } %><!doctype html>
+<!doctype html>
 <html class="no-js">
 	<head>
-		{common:htmlHead}
+		{include:html-head}
 
 		<meta name="description" content="<% if (props.isFreestone){ %>{fld:page.metaDesc_£}<% } %>">
-	   <% if (!props.isFreestone){ %> <link rel="canonical" href="<%= props.homepage %>/index.html"><% } %>
+		<% if (!props.isFreestone){ %> <link rel="canonical" href="<%= props.homepage %>/index.html"><% } %>
 
 		<!-- Facebook, Twitter and G+ Meta tags -->
 		<meta property="og:title" content="<% if (props.isFreestone){ %>{fld:page.title_£}<% } %>" />
 		<meta property="og:url" content="<% if (props.isFreestone){ %>{lnk:page,{fld:page.id}}<% } %>" />
 		<meta property="og:site_name" content="<% if (props.isFreestone){ %>{var:site_name}<% } %>"/>
 
+		
 		<% if (props.isFreestone){ %>
 		[if pageImg:<meta property="og:image" content="{fld:page.img:pageImg}" />]
 		[if !pageImg:<meta property="og:image" content="{var:facebookImg}" />]
@@ -26,8 +22,9 @@
 		<meta property="og:description" content="" />
 		<meta property="og:image" content="img/facebook.jpg" />
 		<% } %>
+		
 		<meta property="og:type" content="article" />
-		<meta name="twitter:card" value="<% if (props.isFreestone){ %>{fld:page.metaDesc_£}<% } %>">
+		<meta name="twitter:card" value="{fld:page.metaDesc_£}">
 		
 		<script>
 			(function(ns){
@@ -38,9 +35,9 @@
 		<title></title>
 	</head>
 	<body>
-		{common:header}
-		{common:footer}
-
+		{include:header}
+		
+		{include:footer}
 	</body>
 </html>
 

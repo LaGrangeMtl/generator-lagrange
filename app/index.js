@@ -208,6 +208,7 @@ this.log(chalk.magenta(
 			this.write('common.htm', this.commonFile);
 			this.directory('freestone/modules', 'modules');
 			this.directory('freestone/lang', 'lang');
+			this.directory('freestone/common', 'common');
 		} else {
 			this.write('index.html', this.indexFile);
 		}
