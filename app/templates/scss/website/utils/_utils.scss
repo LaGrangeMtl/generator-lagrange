@@ -1,6 +1,47 @@
+@mixin createSpritesheet($gridSettings, $sprites){
+	$gridW: map-get($gridSettings, width);
+	$gridH: map-get($gridSettings, height);
+	$gridHC: map-get($gridSettings, horizontalCuts);
+	$gridVC: map-get($gridSettings, verticalCuts);
+	$spritesheetPath: map-get($gridSettings, spritesheetPath);
+
+	@for $i from 1 through length($sprites){
+		$sprite: nth($sprites, $i);
+		$name: map-get($sprite, name);
+		$x: map-get($sprite, x);
+		$y: map-get($sprite, y);
+		$w: map-get($sprite, w);
+		$h: map-get($sprite, h);
+
+		.sprite-#{$name} {
+			width: ($gridW / $gridHC) * $w;
+			height: ($gridH / $gridVC) * $h;
+
+			background-image: url($spritesheetPath);
+			background-size: $gridW $gridH;
+			background-position: (($gridW / $gridHC) * $x * -1) (($gridH / $gridVC) * $y * -1);
+		}
+	}
+};
 
 @function letter-spacing($ls){
 	@return ($ls / 1000 * 1em);
+}
+
+@mixin placeholder($color) {
+	::-webkit-input-placeholder { color:$color; }
+	::-moz-placeholder { color:$color; } /* firefox 19+ */
+	:-ms-input-placeholder { color:$color; } /* ie */
+	input:-moz-placeholder { color:$color; }
+}
+
+@mixin smooth-gradient-images(){
+	image-rendering: optimizeSpeed;             /* FUCK SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
 }
 
 @mixin responsive-fontsizes($breakpoints){
@@ -11,9 +52,16 @@
 	}
 }
 
-@mixin hover(){
-	.no-touch &:hover {
-		@content;
+@mixin hover($class: null){
+	@if($class != null) {
+		.no-touch &:hover, .no-touch &:focus, &.#{$class} {
+			@content;
+		}
+	}
+	@else {
+		.no-touch &:hover, .no-touch &:focus {
+			@content;
+		}
 	}
 }
 
