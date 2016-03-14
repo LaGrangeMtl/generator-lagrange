@@ -35,7 +35,7 @@ var JSCONF = (function(){
 	]);
 
 	return {
-		src: './src/app/',
+		src: 'src/app/',
 		dest: 'js',
 		app:{
 			src: 'Main.js',
@@ -52,8 +52,8 @@ var JSCONF = (function(){
 }());
 
 var CSSCONF = {
-	src: './scss/',
-	dest: './css',
+	src: 'scss/',
+	dest: 'css',
 	mainFile: 'main.scss',
 };
 
@@ -81,14 +81,15 @@ gulp.task('scss', compileScss);
 
 gulp.task('watch', function () {
 
-	var bundler = getBundler(JSCONF.app, true);
-	bundler.bundler = watchify(bundler.bundler);
-	bundleJs(bundler);
+	[JSCONF.app].map(function(jsCnf){
+		var config = getBundler(jsCnf, true);
+		config.bundler = watchify(config.bundler);
+		bundleJs(config);
 
-	bundler.bundler.on('update', function () {
-		bundleJs(bundler);
+		config.bundler.on('update', function () {
+			bundleJs(config);
+		});
 	});
-
 	gulp.watch(CSSCONF.src + '**/*.scss').on('change', compileScss);
 
 });
@@ -205,10 +206,10 @@ function getDependenciesPaths(list) {
 		if(packageJson.browser){
 			var aliases = Object.keys(packageJson.browser);
 			alias = aliases.reduce(function(carry, cur){
-				return (packageJson.browser[cur] === id && cur) || carry;  
+				return (packageJson.browser[cur] === id && cur) || carry;
 			}, alias);
 		}
-		
+
 		var path = ( packageJson.browser && packageJson.browser[alias] ) || resolveDependency(id);
 
 		// console.log(path.blue);
