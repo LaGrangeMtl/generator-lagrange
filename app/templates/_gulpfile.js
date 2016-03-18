@@ -104,8 +104,10 @@ gulp.task('debug', function(){
 
 function compileScss(){
 	return gulp.src(CSSCONF.src + CSSCONF.mainFile)
+		.pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer())
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(CSSCONF.dest).on('end',function(){
 			gutil.log('Sass compiled.');
 		}));
