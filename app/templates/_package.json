@@ -27,15 +27,14 @@
 		"utils-merge": "latest",
 		"gulp-util": "latest",
 		"source-map-support":"latest",
-		"promise": "latest"
+		"promise": "latest",
+		"bluebird": "latest"
 	},
 	"dependencies" : {
 	<% if (props.isBrowserify){ %>
 		"jquery": "<%= props.jqueryVersion %>",
-		"es5-shim": "latest",
-		"console-polyfill" : "latest",
 		<% if (props.jsLibs.isGreensock){ %>"gsap": "latest",<% } %>
-		"bluebird": "latest"
+		"console-polyfill" : "latest"
 	<% } %>
 	},
 	<% if (props.isBrowserify){ %>
