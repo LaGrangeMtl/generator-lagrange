@@ -27,7 +27,8 @@ var JSCONF = (function(){
 
 	//les libs définies dans package.json et bower.json -> dependencies seront toutes externes. On peut aussi en ajouter ici au besoin.
 	var external = getAllExternalPackageIds([
-		':greensock'
+		':greensock',
+		':Promise',
 	]);
 	//deépendances qui ne sont addées qu'en dev
 	var devTools = getDependenciesPaths([
@@ -197,6 +198,7 @@ retourne les paths resolvés d'ne liste de dépendances
 var packageJson;
 function getDependenciesPaths(list) {
 	packageJson = packageJson || require('./package.json');
+	// console.log(packageJson.browser);
 	return list.map(function(dep){
 		var id, alias;
 		dep = dep.split(':');
@@ -204,17 +206,18 @@ function getDependenciesPaths(list) {
 		alias = dep[1];
 		id = id || alias;
 
-		//trouve si la dépendance est aliasée dans le browser de package.json
-		if(packageJson.browser){
+		//trouve si la dépendance est aliasée (alias => npm_name) dans le browser de package.json
+		if(packageJson.browser && !alias){
 			var aliases = Object.keys(packageJson.browser);
 			alias = aliases.reduce(function(carry, cur){
+				// console.log(id, cur);
 				return (packageJson.browser[cur] === id && cur) || carry;
 			}, alias);
 		}
 
 		var path = ( packageJson.browser && packageJson.browser[alias] ) || resolveDependency(id);
 
-		// console.log(path.blue);
+		// console.log(id + ' ' + path.blue);
 		return path && {
 			id: id,
 			path: path,
