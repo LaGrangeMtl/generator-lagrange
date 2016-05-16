@@ -2,10 +2,10 @@
 
 	$this->tableNav = 'page';
 	
-	$this->idRoot = 0;//Niveau de base (non montré dans le menu) dont tous les éléments du menu sont des childs
+	$this->idRoot = 1;//Niveau de base (non montré dans le menu) dont tous les éléments du menu sont des childs
 	
 	//indique que dans le menu principal, les éléments du niveau x sont montrés, et uniquement pour l'item actif
-	$this->mainMenuRootLevel = 1;
+	$this->mainMenuRootLevel = 0;
 	
 	self::$maxLevels = 3;
 	

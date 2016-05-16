@@ -13,8 +13,7 @@
 
 		
 		<% if (props.isFreestone){ %>
-		[if pageImg:<meta property="og:image" content="{fld:page.img:pageImg}" />]
-		[if !pageImg:<meta property="og:image" content="{var:facebookImg}" />]
+		<meta property="og:image" content="{var:facebookImg}" />
 
 		[if pageFacebookDesc:<meta property="og:description" content="{fld:page.metaDesc_£:pageFacebookDesc}" />]
 		[if !pageFacebookDesc:<meta property="og:description" content="{var:facebookDesc_£}" />]

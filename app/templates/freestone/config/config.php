@@ -52,20 +52,5 @@
 		'noCacheVars' => false,
 	);
 	
-	//configuratrion for shared views
-	VEnv::$commonViewConfig = array(
-		'alwaysShow'=>array('htmlHead', 'header', 'footer'),
-		'qstr' => array(
-			'page' => "SELECT
-				el.placeholder AS `item`, gr.placeholder AS `group`
-				FROM commonel AS el
-				INNER JOIN page_commonel_mtm AS lnk ON lnk.element_id = el.id
-				LEFT JOIN commonel_group AS gr ON el.group_id = gr.id
-				WHERE lnk.page_id = '{id}' 
-				ORDER BY gr.id, el.`order`",
-		),
-		'customfunctions'=>false,
-	);
-
 	
 
