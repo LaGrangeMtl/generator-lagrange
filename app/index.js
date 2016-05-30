@@ -203,6 +203,7 @@ this.log(chalk.magenta(
 		if(this.props.isFreestone) {
 			this.mkdir('config');
 			this.template('freestone/config/config.php', 'config/config.php');
+			this.template('freestone/config/robots.txt', 'config/robots.txt');
 			this.template('freestone/deploy.sh', 'deploy.sh');
 			this.write('page.htm', this.indexFile);
 			this.write('common.htm', this.commonFile);

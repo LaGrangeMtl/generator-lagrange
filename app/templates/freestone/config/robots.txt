@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin
+Disallow: /modules
+Disallow: /c/_default
+Disallow: /c/<%= props.projectNamespace %>/
+Allow: /c/<%= props.projectNamespace %>/img_db/
+Allow: /c/<%= props.projectNamespace %>/file_db/
+Allow: /c/<%= props.projectNamespace %>/img/
