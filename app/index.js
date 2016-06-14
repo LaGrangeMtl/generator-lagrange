@@ -158,29 +158,7 @@ this.log(chalk.magenta(
 
 	writeIndex : function () {
 		var indexFile = this.readFileAsString(path.join(this.sourceRoot(), '/page.htm'));
-		var common = this.readFileAsString(path.join(this.sourceRoot(), '/common.htm'));
-
-		if(this.props.isFreestone) {
-			common = this.engine(common, this);
-			this.commonFile = common;
-		} else {
-			//parse le common dans un index
-			var reg = /\{:([a-z]+)\}/ig;
-			var el;
-			while(el = reg.exec(common)){
-				var key = el[1];
-				var content;
-				var regContent = new RegExp('\\{:'+key+'\\}([\\s\\S]+)\\{/'+key+'\\}');
-				var content = regContent.exec(common);
-				indexFile = indexFile.replace('{common:'+key+'}', content[1]);
-
-			}
-			//console.log(commonEls);
-
-		}
 		indexFile = this.engine(indexFile, this);
-
-
 		this.indexFile = indexFile;
 	},
 
@@ -206,7 +184,6 @@ this.log(chalk.magenta(
 			this.template('freestone/config/robots.txt', 'config/robots.txt');
 			this.template('freestone/deploy.sh', 'deploy.sh');
 			this.write('page.htm', this.indexFile);
-			this.write('common.htm', this.commonFile);
 			this.directory('freestone/modules', 'modules');
 			this.directory('freestone/lang', 'lang');
 			this.directory('freestone/common', 'common');
