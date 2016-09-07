@@ -21,6 +21,7 @@ var gutil = require('gulp-util');
 var colors = require('colors');
 
 var autoprefixer = require('gulp-autoprefixer');
+var livereload = require('gulp-livereload');
 
 
 var JSCONF = (function(){
@@ -81,6 +82,7 @@ gulp.task('browserify:production', function () {
 gulp.task('scss', compileScss);
 
 gulp.task('watch', function () {
+	livereload.listen();
 
 	[JSCONF.app].map(function(jsCnf){
 		var config = getBundler(jsCnf, true);
@@ -107,11 +109,14 @@ function compileScss(){
 	return gulp.src(CSSCONF.src + CSSCONF.mainFile)
 		.pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
-		.pipe(autoprefixer())
+		.pipe(autoprefixer({
+			browsers: ['last 2 version', 'ie 9', 'ie 10', 'ie 11']
+		}))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(CSSCONF.dest).on('end',function(){
 			gutil.log('Sass compiled.');
-		}));
+		}))
+		.pipe(livereload());
 }
 
 function getBundler(cnf, isDev){

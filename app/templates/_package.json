@@ -28,6 +28,7 @@
 		"gulp-util": "latest",
 		"source-map-support":"latest",
 		"promise": "latest",
+		"gulp-livereload": "latest",
 		"bluebird": "latest"
 	},
 	"dependencies" : {
